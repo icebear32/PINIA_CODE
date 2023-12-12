@@ -175,7 +175,7 @@ const store = mainStore()
 
 ## 注意事项
 
-**index.ts**，添加**helloWorld1、count1**数据
+**index.ts**，添加**count1**数据
 
 ```ts
 // 1. 定义状态容器
@@ -191,7 +191,6 @@ export const mainStore = defineStore('main', {
             count: 0,
             
             // 解决 读取的是一次性数据，并不是响应式数据 问题的数据
-            helloWorld1: 'Hello World!!!',
             count1: 0,
         }
     },
@@ -235,8 +234,7 @@ const handleClick = () => {
     <div>
         <h3>问题：读取的是一次性数据，并不是响应式数据</h3>
     </div>
-    <div>{{ helloWorld }}</div>
-    <div>{{ count }}</div>
+    <div>{{ count1 }}</div>
 </template>
 
 <script lang="ts" setup>
@@ -244,7 +242,7 @@ import { mainStore } from '../store/index'
 
 // 把store的Helloworld和count数据解构出来
 const store = mainStore()
-const { helloWorld, count } = store
+const { count1 } = store
 </script>
 
 <style scoped></style>
@@ -272,13 +270,13 @@ import Announcement from './components/Announcement.vue'
 
 运行到页面
 
-![image-20231212102225098](D:\document\Pinia\code\pinia-test\public\image-20231212102225098.png)
+![image-20231212105229972](D:\document\Pinia\code\pinia-test\public\image-20231212102225098.png)
 
 
 
 ### 解决方法：使用 Pinia 提供的 storeToRefs 方法
 
-**index.ts**，添加**helloWorld2、count2**数据
+**index.ts**，添加**count2**数据
 
 ```ts
 // 1. 定义状态容器
@@ -294,9 +292,7 @@ export const mainStore = defineStore('main', {
             count: 0,
             
             // 解决 读取的是一次性数据，并不是响应式数据 问题的数据
-            helloWorld1: 'Hello World!!!',
             count1: 0,
-            helloWorld2: 'Hello World!!!',
             count2: 0,
         }
     },
@@ -339,12 +335,10 @@ const handleClick = () => {
     <div>
         <h3>问题：读取的是一次性数据，并不是响应式数据</h3>
     </div>
-    <div>{{ helloWorld1 }}</div>
     <div>{{ count1 }}</div>
     <div>
         <h3>解决问题：</h3>
     </div>
-    <div>{{ helloWorld2 }}</div>
     <div>{{ count2 }}</div>
 </template>
 
@@ -354,9 +348,9 @@ import { storeToRefs } from 'pinia'
 
 // 把store的Helloworld和count数据解构出来
 const store = mainStore()
-const { helloWorld1, count1 } = store
+const { count1 } = store
 // storeToRefs 解决 读取的是一次性数据，并不是响应式数据 问题
-const { helloWorld2, count2 } = storeToRefs(store)
+const { count2 } = storeToRefs(store)
 </script>
 
 <style scoped></style>
@@ -364,5 +358,7 @@ const { helloWorld2, count2 } = storeToRefs(store)
 
 运行到页面
 
-![image-20231212104007864](C:\Users\17276\AppData\Roaming\Typora\typora-user-images\image-20231212104007864.png)
+![image-20231212104952616](D:\document\Pinia\code\pinia-test\public\image-20231212104007864.png)
+
+
 
