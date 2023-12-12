@@ -1,5 +1,6 @@
 <template>
     <div>{{ store.helloWorld }}</div>
+    <div>{{ store.count }}</div>
 </template>
 
 <script lang="ts" setup>
