@@ -9,12 +9,22 @@ export const mainStore = defineStore('main', {
         return {
             helloWorld: 'Hello World!!!',
             count: 0,
-            
+
             // 解决 读取的是一次性数据，并不是响应式数据 问题的数据
             count1: 0,
             count2: 0,
+
+            // 修改状态数据四种方式的数据
+            text: "text",
+            count3: 0
         }
     },
     getters: {},
-    actions: {}
+    actions: {
+        // 第四种方法 修改状态数据
+        changeState() {
+            this.count3++
+            this.text = 'ich'
+        },
+    }
 })
