@@ -4,6 +4,7 @@ import CountButton from './components/CountButton.vue'
 import Announcement from './components/Announcement.vue'
 import ModifyStatusData from './components/ModifyStatusData.vue'
 import Getters from './components/Getters.vue'
+import Ichdu from './components/Ichdu.vue'
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import Getters from './components/Getters.vue'
   <Announcement />
   <ModifyStatusData />
   <Getters />
+  <Ichdu />
 </template>
 
 <style scoped></style>

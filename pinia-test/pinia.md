@@ -539,3 +539,75 @@ const handleClickChangePhone = () => {
 <style scoped></style>
 ```
 
+
+
+## pinia中的store的互相调用
+
+需求：pinia中的store的互相调用
+
+在**store**目录下创建**ich.ts和du.ts**文件
+
+du.ts
+
+```ts
+// 1. 定义状态容器
+// 2. 修改容器中的 store
+// 3.仓库中的 action 的使用
+
+import { defineStore } from "pinia"
+
+export const duStore = defineStore('du', {
+    state() {
+        return {
+            list: ['ich', 'du', 'ichdu']
+        }
+    }
+})
+```
+
+ich.ts
+
+```ts
+// 1. 定义状态容器
+// 2. 修改容器中的 store
+// 3.仓库中的 action 的使用
+
+import { defineStore } from "pinia"
+import { duStore } from "./du"
+
+export const ichStore = defineStore('ich', {
+    state() {
+        return {
+        }
+    },
+    getters: {},
+    actions: {
+        getList() {
+            console.log(duStore().list)
+        }
+    }
+})
+```
+
+在**src**目录下的**components**目录下创建**ichdu.vue**文件
+
+```vue
+<template>
+    <div><h3>pinia中的store的互相调用</h3></div>
+    <div>
+        <button @click="getList">获取列表</button>
+    </div>
+</template>
+
+<script lang="ts" setup>
+import { ichStore } from '../store/ich'
+
+const store = ichStore()
+const getList = () => {
+    store.getList()
+}
+</script>
+
+<style scoped></style>
+```
+
