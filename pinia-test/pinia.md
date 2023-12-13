@@ -169,7 +169,7 @@ const store = mainStore()
 
 运行到页面
 
-![image-20231212100651076](D:\document\Pinia\code\pinia-test\public\image-20231212100651076.png)
+![image-20231212100651076](.\public\image-20231212100651076.png)
 
 
 
@@ -270,7 +270,7 @@ import Announcement from './components/Announcement.vue'
 
 运行到页面
 
-![image-20231212105229972](D:\document\Pinia\code\pinia-test\public\image-20231212102225098.png)
+![image-20231212105229972](.\public\image-20231212102225098.png)
 
 
 
@@ -358,7 +358,7 @@ const { count2 } = storeToRefs(store)
 
 运行到页面
 
-![image-20231212104952616](D:\document\Pinia\code\pinia-test\public\image-20231212104007864.png)
+![image-20231212104952616](.\public\image-20231212104007864.png)
 
 
 
