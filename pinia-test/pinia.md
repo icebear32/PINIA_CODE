@@ -452,3 +452,90 @@ const handleClickActions = () => {
 <style scoped></style>
 ```
 
+
+
+## pinia 中的 Getters 使用
+
+**需求**：电话号码中间用*****号代替显示
+
+在**store**目录下创建**getters.ts**文件
+
+```ts
+// 1. 定义状态容器
+// 2. 修改容器中的 store
+// 3.仓库中的 action 的使用
+
+import { defineStore } from "pinia"
+
+export const getterStore = defineStore('getter', {
+    state() {
+        return {
+            phone: '12345678911'
+        }
+    },
+    getters: {
+        phoneHidden(state) {
+            console.log("getters 被调用")
+            
+            return state.phone.toString().replace(/^(\d{3})\d{4}(\d{4})$/, '$1****$2')
+        }
+    },
+    actions: {}
+})
+```
+
+在**src**目录下的**components**目录下创建**getters.vue**文件
+
+```vue
+<template>
+    <div>{{ store.phoneHidden }}</div>
+    <div>{{ phoneHidden }}</div>
+</template>
+
+<script lang="ts" setup>
+import { storeToRefs } from 'pinia'
+import { getterStore } from '../store/getters'
+
+const store = getterStore()
+
+const { phoneHidden } = storeToRefs(store)
+</script>
+
+<style scoped></style>
+```
+
+运行到页面，出现电话号码中间用*****号代替显示
+
+且当调用两次getters的方法，控制台输出的console语句只有一个，因为数据没有发生改变
+
+
+
+添加**handleClickChangePhone**方法改变数据
+
+当数据发生改变，**getters**的**phoneHidden**会被调用
+
+```vue
+<template>
+    <div>{{ store.phoneHidden }}</div>
+    <div>{{ phoneHidden }}</div>
+    <div>
+        <button @click="handleClickChangePhone">修改电话号码</button>
+    </div>
+</template>
+
+<script lang="ts" setup>
+import { storeToRefs } from 'pinia'
+import { getterStore } from '../store/getters'
+
+const store = getterStore()
+
+const { phoneHidden } = storeToRefs(store)
+
+const handleClickChangePhone = () => {
+    store.phone = "11123456999"
+}
+</script>
+
+<style scoped></style>
+```
+
